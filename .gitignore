@@ -1,0 +1,49 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment variables and secrets
+.env
+.env.*
+*.env
+
+# Data files
+data/raw/
+data/processed/
+
+# Keep sample data allowed
+!data/sample/
+!data/sample/.gitkeep
+
+# Databricks / Spark outputs
+*.parquet
+*.delta
+spark-warehouse/
+metastore_db/
+derby.log
+
+# Logs
+*.log
+logs/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE/editor files
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
