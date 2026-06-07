@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS silver_stock_prices (
     low DOUBLE,
     close DOUBLE,
     adj_close DOUBLE,
+    volume BIGINT,
     daily_return DOUBLE,
     daily_volume DOUBLE, 
 )
