@@ -55,7 +55,10 @@ def add_ingestion_metadata(df, source_file):
     Returns:
         DataFrame: Stock data with source_file and loaded_at columns.
     """
-    pass
+    new_df = df.copy()
+    new_df['source_file'] = source_file
+    new_df['ticker'] = source_file.split('.')[0]
+    return new_df
 
 
 def save_bronze_data(df, output_path):
@@ -69,4 +72,4 @@ def save_bronze_data(df, output_path):
     Returns:
         None
     """
-    pass
+    df.to_csv(output_path, index=False)
