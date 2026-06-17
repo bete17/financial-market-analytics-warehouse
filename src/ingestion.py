@@ -8,7 +8,7 @@ These functions support the Bronze layer of the project.
 import pandas as pd
 import numpy as np
 import yfinance as yf
-
+from pathlib import Path
 
 def load_stock_csv(file_path):
     """
@@ -21,9 +21,9 @@ def load_stock_csv(file_path):
         DataFrame: Raw stock price data.
     """
     if file_path.exists():
-        df = pd.read_csv(file_path)
+        df = pd.read_csv(Path(file_path))
     else:
-        df = np.null
+        df = None
     return df
 
 
