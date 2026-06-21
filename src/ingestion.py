@@ -6,8 +6,6 @@ This module contains functions for loading raw stock price data.
 These functions support the Bronze layer of the project.
 """
 import pandas as pd
-import numpy as np
-import yfinance as yf
 from pathlib import Path
 
 def load_stock_csv(file_path):
@@ -20,11 +18,15 @@ def load_stock_csv(file_path):
     Returns:
         DataFrame: Raw stock price data.
     """
-    if file_path.exists():
-        df = pd.read_csv(Path(file_path))
-    else:
-        df = None
+    path = Path(file_path)
+
+    if not path.exists():
+        raise FileNotFoundError(f"File not found: {file_path}")
+
+    df = pd.read_csv(path)
+
     return df
+    
 
 
 def load_multiple_stock_csvs(folder_path):
@@ -38,7 +40,7 @@ def load_multiple_stock_csvs(folder_path):
         DataFrame: Combined raw stock price data.
     """
     final_df = pd.DataFrame()
-    for file in folder_path.glob("*.csv"):
+    for file in Path(folder_path).glob("*.csv"):
         df = load_stock_csv(file)
         final_df = pd.concat([final_df, df], ignore_index=True)
     return final_df
@@ -55,9 +57,11 @@ def add_ingestion_metadata(df, source_file):
     Returns:
         DataFrame: Stock data with source_file and loaded_at columns.
     """
+    path = Path(source_file)
     new_df = df.copy()
-    new_df['source_file'] = source_file
-    new_df['ticker'] = source_file.split('.')[0]
+    new_df['source_file'] = path.name
+    new_df['ticker'] = path.stem
+    new_df['loaded_at'] = pd.Timestamp.now(tz='UTC')
     return new_df
 
 
