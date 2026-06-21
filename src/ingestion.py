@@ -46,18 +46,18 @@ def load_multiple_stock_csvs(folder_path):
     return final_df
 
 
-def add_ingestion_metadata(df, source_file):
+def add_ingestion_metadata(df, file_path):
     """
     Add ingestion metadata to the raw stock data.
 
     Parameters:
         df (DataFrame): Raw stock price data.
-        source_file (str): Name of the source file.
+        file_path (str): Path to the source file.
 
     Returns:
         DataFrame: Stock data with source_file and loaded_at columns.
     """
-    path = Path(source_file)
+    path = Path(file_path)
     new_df = df.copy()
     new_df['source_file'] = path.name
     new_df['ticker'] = path.stem
