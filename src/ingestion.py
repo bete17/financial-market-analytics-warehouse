@@ -76,4 +76,9 @@ def save_bronze_data(df, output_path):
     Returns:
         None
     """
-    df.to_csv(output_path, index=False)
+    path = Path(output_path)
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        df.to_csv(path, index=False)
+    except OSError as e:
+        raise OSError(f"Failed to save bronze data to {output_path}: {e}") from e
