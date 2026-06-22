@@ -4,7 +4,7 @@
 #functions
     
 def calc_daily_returns(prices):
-    """Calculates the daily returns of a price series.
+    """Calculates the daily returns of a price series in percentage terms.
 
     Args:
         prices (pd.Series): A series of prices.
@@ -12,18 +12,19 @@ def calc_daily_returns(prices):
     Returns:
         pd.Series: A series of daily returns.
     """
+    
     return prices.pct_change()
 
-def calc_dollar_volume(volume):
+def calc_dollar_volume(volume, prices):
     """Calculates the daily volume of a volume series.
 
     Args:
         volume (pd.Series): A series of volumes.
-
+        price (pd.Series): A series of prices.
     Returns:
         pd.Series: A series of daily volumes.
     """
-    return volume.pct_change()
+    return volume * prices
 
 def calc_moving_average(prices, window):
     """Calculates the moving average of a price series.
