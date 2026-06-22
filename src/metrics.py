@@ -16,7 +16,7 @@ def calc_daily_returns(prices):
     return prices.pct_change()
 
 def calc_dollar_volume(volume, prices):
-    """Calculates the daily volume of a volume series.
+    """Calculates the daily volume of a volume series in dollar amounts.
 
     Args:
         volume (pd.Series): A series of volumes.
